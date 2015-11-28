@@ -27,7 +27,13 @@ define([
 			users.fetch({
 				success: function (users) {
 
-					var compiledTemplate = _.template( homeTemplate, { } );
+					var data = {
+							user : users.attributes,
+							_: _
+							
+					}
+					
+					var compiledTemplate = _.template( homeTemplate, {variable: 'data'} )(users.attributes);
 					that.$el.html(compiledTemplate);
 					homeInitailize();
 				}
