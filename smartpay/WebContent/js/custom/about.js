@@ -1,0 +1,7 @@
+
+
+function initializeAbout(){
+	
+	$("#aboutCarousel").carousel();
+	
+}

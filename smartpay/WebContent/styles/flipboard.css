@@ -1,0 +1,193 @@
+.flip-images img{
+    width: 300px;
+    height: 200px;
+}
+
+.flip-container{
+    width: 300px;
+    height: 200px;
+    position: relative;
+    -webkit-perspective: 600px;
+}
+
+.flip-top{
+    height: 100px;
+    overflow: hidden;
+    width: 300px;
+}
+
+.flip-bottom{
+    position: relative;
+    width: 300px;
+    height: 100px;
+}
+
+/*  Переднее изображение  */
+
+.front-image-top{ /*  Верхняя чать переднего изображения  */
+    display: block;
+    -webkit-backface-visibility: hidden; /*Делаем невидимой обратную сторону картинки*/
+    position: absolute;
+    top: 0px;
+    width: 300px;
+    height: 100px; /*Половиним высоту, чтобы была видна только верхняя часть изображения*/
+    overflow: hidden; /*Скрываем нижнюю часть*/
+    z-index: 900;
+}
+
+.front-image-bottom{ /*  Нижняя чать переднего изображения  */
+    height: 100px;
+    width: 300px;
+    overflow: hidden;
+    vertical-align: bottom;
+    position: absolute;
+    z-index: -2;
+}
+
+.front-image-bottom img{
+    position: absolute;
+    top: -100px; /*Смещаем картинку вверх на половину высоты, чтобы показать нижнюю часть*/
+}
+
+/*  Заднее изображение  */
+
+.back-image-top{
+    height: 100px;
+    position: absolute;
+    top: 0px;
+    vertical-align: top;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.back-image-bottom{
+    display: block;
+    position: absolute;
+    top: 0px;
+    height: 100px;
+    -webkit-transform: rotateY(180deg) rotateZ(180deg);  /*Переворачиваем картинку вверх ногами и лицевой стороной назад*/
+    overflow: hidden;
+    width: 300px;
+    -webkit-backface-visibility: hidden;
+    z-index: 800;
+}
+
+.back-image-bottom img{
+    position: absolute;
+    top: -100px;
+}
+
+/*ТЕНИ*/
+
+.shadow-top-front{
+    position: absolute;
+    background: #000;
+    z-index: 1000;
+    width: 300px;
+    height: 100px;
+    -webkit-backface-visibility: hidden;
+    opacity: 0; /*Тень будет появляеться, поэтому сначала она невидима*/
+}
+
+.shadow-top-back{
+    position: absolute;
+    top: 0px;
+    width: 300px;
+    height: 100px;
+    background: #000;
+    z-index: 1000;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: rotateY(180deg); /*Разворачиваем тень лицом назад, чтобы при перевороте её не было видно*/
+    opacity: 1; /*Тень будет исчезать, поэтому сначала она видна*/
+}
+
+.shadow-bottom{
+    width: 300px;
+    height: 100px;
+    position: absolute;
+    z-index: -1;
+    background: #000;
+    opacity: 0;
+}
+
+/* Rotation CSS - (START)*/
+-webkit-keyframes flip {
+    0% {
+        -webkit-transform: rotate3d(1,0,0, 0deg);
+    }
+    50% {
+        -webkit-transform: rotate3d(1,0,0, -180deg);
+    }
+    60% {
+        -webkit-transform: rotate3d(1,0,0, -155deg);
+    }
+    70% {
+        -webkit-transform: rotate3d(1,0,0, -140deg);
+    }
+    100% {
+        -webkit-transform: rotate3d(1,0,0, -180deg);
+    }
+}
+
+/* Rotation CSS - (END) */
+
+/* keyframe CSS - (START) */
+@-webkit-keyframes shadowTopFront{
+    0% { opacity: 0; }
+    70% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@-webkit-keyframes shadowTopBack {
+    0% { opacity: 0.8; }
+    50% { opacity: 0; }
+    60% { opacity: 0.05; }
+    70% { opacity: 0.1; }
+    100% { opacity: 0; }
+}
+
+@-webkit-keyframes shadowBottom {
+    0% { opacity: 0; }
+    50% { opacity: 0.6; }
+    60% { opacity: 0.4; }
+    70% { opacity: 0.3; }
+    100% { opacity: 0.5; }
+}
+
+/* keyframe CSS - (END) */
+
+/* Flip shadow CSS - (START) */
+
+.flip {
+    /*background: #ccc;*/
+    width: 200px;
+    height: 100px;
+    -webkit-transform-origin: bottom;
+    -webkit-animation: flip 1s; /*Задаем имя и длительнось анимации*/
+    -webkit-animation-iteration-count: 1; /*Количество итераций для заданной анимации*/
+    -webkit-animation-timing-function: cubic-bezier(0,0,1,0.5); /*Задаем кривую Безье для просчета промежуточных значений анимированных параметров*/
+    -webkit-transform: rotate3d(1,0,0, 180deg); /*Задаем конечное значение поворота, иначе по окончанию анимации плоскость вернется в 0 градусов*/
+}
+
+.shadow-top-front-animate{
+    -webkit-animation: shadowTopFront 1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: cubic-bezier(0,0,1,0.5);
+    opacity: 0;
+}
+
+.shadow-top-back-animate{
+    -webkit-animation: shadowTopBack 1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: cubic-bezier(0,0,1,0.5);
+    opacity: 0;
+}
+
+.shadow-bottom-animate{
+    -webkit-animation: shadowBottom 1s;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: cubic-bezier(0,0,1,0.5);
+    opacity: 1;
+}
+
+/* Flip shadow CSS - (END) */
