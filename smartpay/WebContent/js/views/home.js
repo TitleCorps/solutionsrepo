@@ -19,26 +19,25 @@ define([
 			screenName = "home";
 			var that = this;
 			var users = new User();
-			var menuId = '#home'; 
+			var menuId = '#home';
 			menuChange(menuId);
-			var menu = $('#topNavDiv');
-			menu.removeClass('navbar-fixed-top');
-			menu.addClass('navbar-static-top');
+
 			users.fetch({
 				success: function (users) {
 
 					var data = {
 							user : users.attributes,
 							_: _
-							
+
 					}
-					
-					var compiledTemplate = _.template( homeTemplate, {variable: 'data'} )(users.attributes);
-					that.$el.html(compiledTemplate);
-					homeInitailize();
+			 					
+			var compiledTemplate = _.template( homeTemplate, {variable: 'data'} )(users.attributes);
+			//var compiledTemplate = _.template( homeTemplate, {});
+			that.$el.html(compiledTemplate);
+				//				homeInitailize();
 				}
-			})
-		}
+			});
+			 		}
 	});
 
 	return HomeView;

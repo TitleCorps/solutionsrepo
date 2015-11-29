@@ -12,14 +12,14 @@ define([
         'underscore',
         'backbone',
         'views/home',
-        'views/about',
-        'views/services',
-        'views/contact'
+        'views/payment',
+        'views/history',
+        'views/signin'
         ], function($, _, Backbone, 
         		HomeView,
-        		AboutView,
-        		ServicesView,
-        		ContactView
+        		PaymentView,
+        		HistoryView,
+        		SignView
         		){
 
 	function htmlEncode(value){
@@ -50,8 +50,9 @@ define([
 		routes: {
 			'':'home',
 			'contact' : 'showContactForm',
-			'about' : 'showAbout',
-			'services' : 'showServices',
+			'payment' : 'showPayment',
+			'history' : 'showHistory','signin' : 'signin',
+			'makePayment' : 'makePayment',
 			// Default
 			'*actions': 'defaultAction'
 		}
@@ -66,22 +67,28 @@ define([
 			
 		});
 
-		app_router.on('route:showAbout', function(){
-			var aboutView = new AboutView();		
-			aboutView.render();
+		
+		app_router.on('route:showPayment', function(){
+			var paymentView = new PaymentView();		
+			paymentView.render();
 
 		});
 
-
-		app_router.on('route:showContactForm', function(actions){
-			var contactView = new ContactView();
-			contactView.render();
+		app_router.on('route:showHistory', function(actions){
+			var historyView = new HistoryView();
+			historyView.render();
 
 		});
 
-		app_router.on('route:showServices', function(actions){
-			var productsView = new ProductsView();
-			productsView.render();
+		app_router.on('route:signin', function(actions){
+			var signView = new SignView();
+			signView.render();
+
+		});
+
+		app_router.on('route:makePayment', function(actions){
+			var signView = new SignView();
+			signView.render();
 
 		});
 		
@@ -97,13 +104,13 @@ define([
 
 		Backbone.history.start();
 		
-		$(document).on('click','.navbar-collapse.in',function(e) {
+		/*$(document).on('click','.navbar-collapse.in',function(e) {
 
 		    if( $(e.target).is('a') && ( $(e.target).attr('class') != 'dropdown-toggle' ) ) {
 		        $(this).collapse('hide');
 		    }
 
-		});
+		});*/
 	};
 	return {
 		initialize: initialize

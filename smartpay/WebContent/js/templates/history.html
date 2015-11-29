@@ -1,0 +1,219 @@
+<div class="container">
+	<div class="container" style="top: 60px; margin-top: 100px">
+	<h3>Transaction Details</h3>
+	
+	
+	<table class="table">
+		
+		<thead>
+			<tr>
+				<th>Transaction Details</th>
+				<th>Date</th>
+				<th>Amount</th>
+			</tr>
+		</thead>
+		<tbody>
+		
+		
+		
+		<% 
+		 for(var i=0; i < data.blocks.length; i++){
+		%>
+		
+		<tr>
+			<td><%= data.blocks[i].paymentDescription %></td>
+			<td>28/11/2015</td>
+			<td><%= data.blocks[i].amount %></td>
+			<td><span class="text text-danger"> <i class="fa fa-arrow-right fa-2x"></i></span></td>
+		</tr>
+		<!-- <tr>
+			<td>erwertytiu54jhhv4ghvhgv</td>
+			<td>28/11/2015</td>
+			<td>15.00</td>
+		</tr>
+		<tr>
+			<td>vcvbxvzfsdytf87675yugjhg</td>
+			<td>28/11/2015</td>
+			<td>18.00</td>
+		</tr> -->
+		<% } %>
+		<tr>
+			<td>erwertytiu54jhhv4ghvhgv</td>
+			<td>28/11/2015</td>
+			<td>15.00</td>
+			<td><span class="text text-success"><i class="fa fa-arrow-left fa-2x"></i></span> </td>
+		</tr>
+		</tbody>
+	</table>
+	
+	
+	<div class="col-sm-12 col-md-12 col-lg-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="text-center">Your Expenditure<span class="glyphicon glyphicon-ok pull-right"></span></h4>
+                </div>
+                <div class="row" style="margin: 0 10px 0 10px;">
+                    <div class="row" style="margin: 10px;">
+                        <div class="col-sm-3 col-md-2 col-lg-2">
+                            <span class="leftText">Credit</span>
+                        </div>
+                        <div class="col-sm-7 col-md-8 col-lg-8" style="height: 90px;" id="sparkline1"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                            <span class="rightText" style="margin-top: 23px;">223</span>
+                        </div>
+                    </div>
+                    
+                    <div class="row" style="margin: 0 10px 0 10px;">
+                        <div class="col-sm-3 col-md-2 col-lg-2">
+                            <span class="leftText">Debit</span>
+                        </div>
+                        <div class="col-sm-7 col-md-8 col-lg-8" style="height: 90px;" id="sparkline3"></div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                            <span class="rightText" style="margin-top: 23px;">574</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	
+	
+	</div>
+</div>
+
+<script>
+
+$(document).ready(function(){
+    // a function to generate some random data
+    function getRandomArray(length, min, max) {
+        var array = [];
+        for (var i = 0; i < length; i++) {
+            array.push(Math.floor(Math.random() * (max - min + 1)) + min);
+        }
+        return array;
+    }
+
+//init the three sparkline charts
+$("#sparkline1").shieldChart({
+    theme: "light",
+    exportOptions: {
+        image: false,
+        print: false
+    },
+    tooltipSettings: {
+        chartBound: true,
+        axisMarkers: {
+            enabled: true,
+            mode: 'x'
+        },
+        customHeaderText: '',
+        customPointText: function (point, chart) {
+            return shield.format(
+                '<span><b>{value}</b></span>',
+                {
+                    value: point.y
+                }
+            );
+        },
+    },
+    chartAreaPaddingTop: -7,
+    chartLegend: {
+        enabled: false
+    },
+    seriesSettings: {
+        line: {
+            activeSettings: {
+                pointHoveredState: {
+                    enabled: false
+                }
+            },
+            pointMark: {
+                enabled: false
+            }
+        }
+    },
+    axisX: {
+        axisTickText: {
+            enabled: false
+        },
+        plotStripWidth: 0,
+        drawWidth: 0,
+        ticksWidth: 0,
+        ticksHeight: 0
+    },
+    axisY: {
+        axisTickText: {
+            enabled: false
+        },
+        plotStripWidth: 0,
+        drawWidth: 0,
+        ticksWidth: 0
+    },
+    dataSeries: [{
+        seriesType: "line",
+        data: getRandomArray(70, 1, 100)
+    }]
+});
+
+$("#sparkline3").shieldChart({
+    theme: "light",
+    exportOptions: {
+        image: false,
+        print: false
+    },
+    tooltipSettings: {
+        chartBound: true,
+        axisMarkers: {
+            enabled: true,
+            mode: 'x'
+        },
+        customHeaderText: '',
+        customPointText: function (point, chart) {
+            return shield.format(
+                '<span><b>{value}</b></span>',
+                {
+                    value: point.y
+                }
+            );
+        },
+    },
+    chartAreaPaddingTop: -7,
+    chartLegend: {
+        enabled: false
+    },
+    seriesSettings: {
+        area: {
+            activeSettings: {
+                pointHoveredState: {
+                    enabled: false
+                }
+            },
+            pointMark: {
+                enabled: false
+            }
+        }
+    },
+    axisX: {
+        axisTickText: {
+            enabled: false
+        },
+        plotStripWidth: 0,
+        drawWidth: 0,
+        ticksWidth: 0,
+        ticksHeight: 0
+    },
+    axisY: {
+        axisTickText: {
+            enabled: false
+        },
+        plotStripWidth: 0,
+        drawWidth: 0,
+        ticksWidth: 0
+    },
+    dataSeries: [{
+        seriesType: "area",
+        data: getRandomArray(70, 1, 100)
+    }]
+});
+
+});
+</script>

@@ -15,6 +15,9 @@
 <link href="./styles/carousel.css" rel="stylesheet" />
 <link href="./styles/base.css" rel="stylesheet" />
 <link href="./styles/nav-color.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/shieldui-all.min.css" />
+<link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light/all.min.css" />
+<script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -40,9 +43,10 @@
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav navbar-right">
 							<li id='home' class="active"><a href="#">Home</a></li>
-							<li id='about'><a href="#about">About</a></li>
-							<li id='products'><a href="#products">Services</a></li>
-							<li id="contact"><a href="#contact">Contact</a></li>
+							<li id='payment'><a href="#payment">Payment</a></li>
+							<li id='history'><a href="#history">History</a></li>
+							<!-- <li id="contact"><a href="#contact">Contact</a></li> -->
+							<li id='signupin'><a href="#signin">Sign In</a></li>
 						</ul>
 					</div>
 				</div>
